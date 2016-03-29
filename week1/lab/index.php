@@ -32,20 +32,44 @@
         {
             
             
-            if ( empty($phone) ) {
-                $message = 'Sorry Phone is Empty';
-            } else if ( empty($phoneType) ) {
-                $message = 'Sorry Phone Type is Empty';
-            } else if ( addPhone($phone, $phoneType ) ) {
-                $message = 'Phone Added';
-                $phone = '';
-                $phoneType = '';
+            if ( empty($fullname) ) 
+                {
+                $message = '';
+                
+                } else if ( empty($email) ) {
+                $message = '';
+                
+                } else if ( empty($addressline1) ) {
+                $message = '';
+                
+                } else if ( empty($city) ) {
+                $message = '';
+                
+                } else if ( empty($state) ) {
+                $message = '';
+                
+                } else if ( empty($zip) ) {
+                $message = '';
+                
+                } else if ( empty($birthday) ) {
+                $message = '';
+                
+            } else if ( addAddress($fullname, $email, $addressline1, $city, $state, $zip, $birthday ) ) {
+                $message = 'Adress Added';
+                $fullname = '';
+                $email = '';
+                $addressline1 = '';
+                $city = '';
+                $state = '';
+                $zip = '';
+                $birthday = '';
             }
             
             
         }
-          
- 
+       
+        include './templates/addressform.php';
+   
         ?>
         
         
