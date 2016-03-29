@@ -11,7 +11,8 @@
        State: <input name="state" value="<?php echo $state; ?>" /> <br />
        Zip Code: <input name="zip" value="<?php echo $zip; ?>" /> <br />
        Birthday : <input type="date" name="birthday" value="<?php echo $birthday; ?>" />
-       
+      
+
        
        <input type="submit" value="submit" class="btn btn-primary" />
     </form>

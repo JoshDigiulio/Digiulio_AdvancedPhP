@@ -25,7 +25,7 @@
         $birthday = filter_input(INPUT_POST, 'birthday');
         
         
-        $adress = getAllAdress();
+        $address = getAllAdress();
         
         
         if ( isPostRequest() ) 
@@ -69,7 +69,7 @@
         }
        
         include './templates/addressform.php';
-   
+        include './templates/viewaddress.php';
         ?>
         
         
