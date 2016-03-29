@@ -3,7 +3,7 @@
 <html>
     <head>
     <meta charset="UTF-8">
-    <title>some test</title>
+    <title></title>
         
     </head>
     
