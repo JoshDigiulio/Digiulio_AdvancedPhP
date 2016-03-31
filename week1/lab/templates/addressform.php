@@ -1,8 +1,14 @@
 <br />
 
+
+
+
+
+
 <div class="container">
     <h1>Add Address</h1>
     <form action="#" method="post">   
+        
         
        Full Name: <input name="fullname" value="<?php echo $fullname; ?>" /> <br />
        Email: <input name="email" value="<?php echo $email; ?>" /> <br />
@@ -15,5 +21,7 @@
 
        
        <input type="submit" value="submit" class="btn btn-primary" />
+       <input type="button" onclick="location.href='index.php';" value="Back" />
+       
     </form>
 </div>

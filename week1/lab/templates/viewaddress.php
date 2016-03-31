@@ -16,6 +16,7 @@
     <?php echo $values['zip']; ?> 
         <br>
     <?php echo $values['birthday']; ?> 
+        <hr> </hr>
     </li>
     
 <?php endforeach; ?>
