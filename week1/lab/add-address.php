@@ -4,7 +4,9 @@
     <head>
     <meta charset="UTF-8">
     <title></title>
-        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     </head>
     
     <body>
@@ -27,76 +29,47 @@
         
         
         $address = getAllAdress();
+        $message =''; 
+        $errors = [];
         
+        $fullnameRegex = '/^(?:[A-Za-z]+(?:\s+|$)){2,3}$/';
+        $fullname = filter_input(INPUT_POST, 'fullname');  
         
         if ( isPostRequest() ) 
         {
             
-        $fullnameRegex = '/^(?=\S+(?:\s\S+)+$)[\pL\s]{8,50}$/u';
-        $fullname = filter_input(INPUT_POST, 'fullname');  
-        
-        $emailRegex = '^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$^';
-        $email = filter_input(INPUT_POST, 'email');
-        
-       
-        
-        if ( !is_null($fullname) & !is_null($email) ) 
-        {
+            if ( !preg_match($fullnameRegex, $fullname) ) {
+                 $errors[] = 'Fullnames invalid';
+            } 
             
-            if ( !preg_match($fullnameRegex, $fullname) )
-            {
-                 $message = 'Please Enter your first and last name';
-                 
+            if ( filter_var($email, FILTER_VALIDATE_EMAIL) == false ){
+                $errors[] = 'Email invalid';
             }
-            else 
-            {
-                $message = 'yes name';
+            if (empty($birthday)){
+                $errors[] = 'Birthday invalid';
             }
             
-            
-            
+
+            if(count($errors)==0 ){
+                if ( addAddress($fullname, $email, $addressline1, $city, $state, $zip, $birthday ) ) {
+
+                   $message = 'Address has been added';
+                   $fullname = '';
+                   $email = '';
+                   $addressline1 = '';
+                   $city = '';
+                   $state = '';
+                   $zip = '';
+                   $birthday = '';
+               }
+            }
         }
-        
-        
-        
-         if ( !is_null($email) ) 
-        {
             
-            if ( !preg_match($emailRegex, $email) )
-            {
-                 $message = 'no email';
-                 
-            }
-            else 
-            {
-                $message = 'yes email';
-            }
-            
-        }
-        
-        
-            
-            
-            
-            
-            
-            else if ( addAddress($fullname, $email, $addressline1, $city, $state, $zip, $birthday ) ) {
-              
-                $message = '';
-                $fullname = '';
-                $email = '';
-                $addressline1 = '';
-                $city = '';
-                $state = '';
-                $zip = '';
-                $birthday = '';
-            }
-            
-            
-        }
-       
+        include './templates/success-messages.php';
+        include './templates/error-messages.php';
         include './templates/addressform.php';
-        include './templates/messages.php';
+        
+        
         ?>
         
          
