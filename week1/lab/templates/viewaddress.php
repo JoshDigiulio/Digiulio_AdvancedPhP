@@ -1,4 +1,7 @@
+
+<!-- If their are more than 0 address populate the view address's page with the data. -->
 <?php if ( count($address) > 0 ) : ?>
+<!-- Table Headers for data. -->
 <h1>Addresses</h1>
 <table class="table">
     <tr>
@@ -10,6 +13,8 @@
     <th>Zip</th>
     <th>Date of Birth</th>
     </tr>
+    
+<!-- Place the correct values into the correct table columns. -->
 <?php foreach( $address as $key => $values ) : ?>
     <tr>
     <td><?php echo $values['fullname']; ?></td>
