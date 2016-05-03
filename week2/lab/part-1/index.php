@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -13,14 +9,20 @@ and open the template in the editor.
         <?php
                 require_once './autoload.php';
         
-        
-        
+                 $message = new Message();
+                 
+                 $message->addMessage('Hello', 'First message');
+                 $message->addMessage('Hello Two', 'Second message');
+                 
+                 var_dump($message->getAllMessages());
+                 
+                 $message->removeMessage('Hello');
+                 var_dump($message->getAllMessages());
+                
         
         ?>
         
-        <?php if ( isset($message) ) : ?>
-        <h2><?php echo $message; ?> </h2>
-        <?php endif; ?>
+     
         
     </body>
 </html>

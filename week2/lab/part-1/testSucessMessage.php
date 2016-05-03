@@ -9,7 +9,7 @@
         <?php
                 require_once './autoload.php';
         
-                 $message = new ErrorMessage();
+                 $message = new SucessMessage();
                  
                  $message->addMessage('Hello', 'First message');
                  $message->addMessage('Hello Two', 'Second message');
