@@ -1,4 +1,4 @@
-<!-- -->
+<!-- Page Finished -->
 
 <!DOCTYPE html>
 
@@ -38,66 +38,63 @@
         $message =''; 
         $errors = [];
         
+        //Lab part-2
         $util = new Util();
         $addressClass = new Address();
         
-        //Fullname regex:
-        $fullnameRegex = '/^(?:[A-Za-z]+(?:\s+|$)){2,3}$/';
-        $fullname = filter_input(INPUT_POST, 'fullname'); 
+        $vaild = new Validator();
         
-        //Address regex:
-        $addressRegex = '^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$^';
-        $addressline1 = filter_input(INPUT_POST, 'addressline1');
-        
-        //City regex:
-        $cityRegex = '/^[a-zA-Z ]+$/';
-        $city = filter_input(INPUT_POST, 'city');
-        
-        //State regex:
-        $stateRegex = '/^(A[LKSZRAP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADL N]|K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD] |T[NX]|UT|V[AIT]|W[AIVY])$/';
-        $state = filter_input(INPUT_POST, 'state');
-        
-        //Zip regex:
-        $zipRegex = '/^([0-9]{5})(-[0-9]{4})?$/i';
-        $zip = filter_input(INPUT_POST, 'zip');
-        
-        
+        //Lab Part-2
         //Check to see if the user hit submit and verify their input:
         if ($util->isPostRequest()) 
         {
+            //Lab Part-2
             //Fullname validation using regex:
-            if ( !preg_match($fullnameRegex, $fullname) ) {
+            if ( !$vaild->fullnameIsValid($fullname) ) 
+            {
                  $errors[] = 'Please enter your first and last name.';
             } 
+            
+            //Lab Part-2
             //Email validation:
-            if ( filter_var($email, FILTER_VALIDATE_EMAIL) == false ){
+            if ( !$vaild->emailIsValid($email) )
+            {
                 $errors[] = 'Please enter a valid emial ex: Joshua@yahoo.com';
             }
             
+            //Lab Part-2
             //Address validation using regex:
-            if ( !preg_match($addressRegex, $addressline1) ) {
+            if ( !$vaild->adressIsValid($addressline1)  )
+            {
                  $errors[] = 'Please enter your address.';
             }
             
+            //Lab Part-2
             //City validation using regex:
-            if ( !preg_match($cityRegex, $city) ) {
+            if (!$vaild->cityIsValid($city)) 
+            {
                  $errors[] = 'Please enter your city (cannot contain numbers).';
             }
             
+            //Lab Part-2
             //State validation using regex:
-            if ( !preg_match($stateRegex, $state) ) {
+            if (!$vaild->stateIsValid($state)) 
+            {
                  $errors[] = 'Please enter your state abbrv. in capital letters ex: WA';
             }
             
+            //Lab Part-2
             //Zip validaition using regex:
-            if ( !preg_match($zipRegex, $zip) ) {
+            if (!$vaild->zipIsValid($zip)) 
+            {
                  $errors[] = 'Please enter a valid five digit zip code.';
             }
             
-            
+            //Lab Part-2
             //Birthday is set up with a date picker so no invalid data can be
             //entered:
-            if (empty($birthday)){
+            if (!$vaild->birthdayIsValid($birthday))
+            {
                 $errors[] = 'Please select your birthday from the drop down menu.';
             }
             
