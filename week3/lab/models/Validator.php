@@ -1,5 +1,3 @@
-<!-- Page Finished -->
-
 <?php
 
 
@@ -11,7 +9,7 @@ class Validator
         return ( is_string($email) && !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) !== false );
     }
     
- public function passwordIsEmpty($password) 
+ public function passwordValid($password) 
    {
         if (empty($password)) 
         {
@@ -22,6 +20,9 @@ class Validator
             return false;
         }
     }
+    
+    
+    
     public function fullnameIsValid($fullname) 
     {
         return (!empty($fullname)&& preg_match('/^(?:[A-Za-z]+(?:\s+|$)){2,3}$/', $fullname) );
