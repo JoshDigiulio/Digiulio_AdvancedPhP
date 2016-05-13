@@ -1,10 +1,7 @@
 
 
 <?php
-/* 
-   Auto load classes without a include
- */
-
+//Autoload:
 function load_lib($class)
 {
     include 'models/'.$class . '.php';

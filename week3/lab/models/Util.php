@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Description of util
- *
- * @author GFORTI
- */
 class Util {
     
     

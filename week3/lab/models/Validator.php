@@ -3,12 +3,12 @@
 
 class Validator 
 {
-  
+    //Email check:
     public function emailIsValid($email)
     {
         return ( is_string($email) && !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) !== false );
     }
-    
+   //Password check: 
  public function passwordValid($password) 
    {
         if (empty($password)) 

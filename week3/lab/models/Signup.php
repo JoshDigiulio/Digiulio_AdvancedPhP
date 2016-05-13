@@ -10,7 +10,7 @@ class Signup extends DB
         $this->setUser('root');
         
     }
-
+    //Save the user info to the database:
     public function save($email, $password) 
     {
         
@@ -28,7 +28,7 @@ class Signup extends DB
         }
         return false;
     }
-
+   //Checks to see if the email already has a account
     public function emailExist($email) 
     {
 

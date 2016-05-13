@@ -10,7 +10,7 @@ class Login extends DB
         $this->setUser('root');
         
     }
-
+    //See if the email is on file and the password matches said email:
     public function verifyCheck($email, $password) 
     {  
         $stmt = $this->getDb()->prepare("SELECT * FROM users WHERE email = :email");
@@ -32,7 +32,7 @@ class Login extends DB
         }
         return 0;
     }
-    
+     //Checks to see if the email is in the database: 
      public function emailNotCreated($email)
     {
 
