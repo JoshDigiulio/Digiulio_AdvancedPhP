@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title></title>
-        <!-- Latest compiled and minified CSS -->
+            <!-- Latest compiled and minified CSS -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
             <!-- Optional theme -->
@@ -38,12 +38,12 @@
         
         $directory = new DirectoryIterator($folder);
 
-        $fileNameGet = filter_input(INPUT_GET, 'fileName');
+        $thefilename = filter_input(INPUT_GET, 'fileName');
         
         ?>
                      
         <?php foreach ($directory as $fileInfo) : ?>        
-            <?php if ( $fileInfo->isFile() && $fileInfo->getFilename() == $fileNameGet ) : ?>
+            <?php if ( $fileInfo->isFile() && $fileInfo->getFilename() == $thefilename ) : ?>
                                  
                 <h2><?php echo $fileInfo->getFilename(); ?></h2>
                 <p> Download <a href="./uploads/<?php echo basename($fileInfo);  ?>" target="_blank"> <?php echo basename($fileInfo);  ?> </a></p>   
@@ -54,7 +54,7 @@
                 <p>This file was uploaded on <?php echo date("l F j, Y, g:i a", $fileInfo->getMTime()); ?></p>
                 
                 
-                <p>This file is <?php echo $fileInfo->getSize(); ?> byte's</p>
+                <p>This file is <?php echo $fileInfo->getSize(); ?> large.</p>
                 
                 <a href="displayFiles.php">File Table</a>
                  </br>
