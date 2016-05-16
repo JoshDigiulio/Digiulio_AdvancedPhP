@@ -18,7 +18,7 @@ class FileUpload
                 throw new RuntimeException('No file selected.');
             case UPLOAD_ERR_INI_SIZE:
             case UPLOAD_ERR_FORM_SIZE:
-                throw new RuntimeException('File to larage.');
+                throw new RuntimeException('File to large.');
             default:
                 throw new RuntimeException('Oops! something went wrong.');
         }
@@ -26,7 +26,7 @@ class FileUpload
 
     private function validSize($keyName) 
     {
-        if ($_FILES[$keyName]['size'] > 5000000) 
+        if ($_FILES[$keyName]['size'] > 1000000) 
         {
             throw new RuntimeException('The file is to big.');
         }
@@ -37,18 +37,19 @@ class FileUpload
             //Make sure file has one of these extensions:
             $finfo = new finfo(FILEINFO_MIME_TYPE);
             $validExts = array(
-                'txt' => 'text/plain', //ok
-                'html' => 'text/html', //ok
-                'pdf' => 'application/pdf', //ok
-                'doc' => 'application/msword', //ok
-                'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', //ok
-                'xls' => 'application/vnd.ms-excel', //ok
-                'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', //ok
-                'jpg' => 'image/jpeg', //ok
-                'png' => 'image/png', //ok
-                'gif' => 'image/gif' //ok
+                'txt' => 'text/plain', 
+                'html' => 'text/html', 
+                'pdf' => 'application/pdf', 
+                'doc' => 'application/msword', 
+                'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
+                'xls' => 'application/vnd.ms-excel', 
+                'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 
+                'jpg' => 'image/jpeg', 
+                'png' => 'image/png', 
+                'gif' => 'image/gif' 
                 
             );
+            
             $ext = array_search($finfo->file($_FILES[$keyName]['tmp_name']), $validExts, true);
             
             if (false === $ext) 
@@ -57,19 +58,15 @@ class FileUpload
             }
             else 
             {
-                $this->setFileName($ext, $keyName);
+                $this->isFileUploaded($ext, $keyName);
             }
     }
     
-    private function setFileName($ext, $keyName)
+    public function isFileUploaded($ext, $upfile) 
     {
-                // You should name it uniquely.
-                // DO NOT USE $_FILES['upfile']['name'] WITHOUT ANY VALIDATION !!
-                // On this example, obtain safe unique name from its binary data.
-
-            $fileName = sha1_file($_FILES[$keyName]['tmp_name']);
-            $location = sprintf('./uploads/%s.%s', $fileName, $ext);
-            $this->moveFile($location, $keyName);
+        $fileName = sha1_file($_FILES[$upfile]['tmp_name']);
+        $location = sprintf('./uploads/%s.%s', $fileName, $ext);
+        $this->moveFile($location, $upfile);
     }
     
     private function moveFile($location, $keyName)

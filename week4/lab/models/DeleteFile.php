@@ -4,6 +4,15 @@ class DeleteFile
 {
     public function deleteFile($file)
     {
-          unlink('./uploads/' . $file);
+          if (unlink('./uploads/' . $file)) 
+          {
+                throw new RuntimeException('Not Deleted' . $file);
+          } 
+          else 
+          {
+          
+          }
     }
+    
+    
 }

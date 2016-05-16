@@ -33,7 +33,7 @@
                             <tr>
                                 <!-- Populate files names -->
                                 <td>
-                                   <?php echo basename($file);  ?>" target="_blank"> <?php echo basename($file);  ?> 
+                                    <?php echo $file; ?>
                                 </td>
                                 
                                 
