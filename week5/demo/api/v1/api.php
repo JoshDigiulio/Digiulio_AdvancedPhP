@@ -28,22 +28,20 @@ try {
      * But in this example we will just code it out.
      * 
      */
-    if ( 'address' === $resource ) {
-        
+    if ( 'address' === $resource ) 
+    {
         $resourceData = new AddressResoruce();
         
-        if ( 'GET' === $verb ) {
-            
-            if ( NULL === $id ) {
-                
-                $restServer->setData($resourceData->getAll());                           
-                
-            } else {
-                
-                $restServer->setData($resourceData->get($id));
-                
-            }            
-            
+        if ( 'GET' === $verb ) 
+        {
+            if ( NULL === $id ) 
+            { 
+                $restServer->setData($resourceData->getAll());                            
+            }
+            else 
+            { 
+                $restServer->setData($resourceData->get($id));  
+            }              
         }
                 
         if ( 'POST' === $verb ) {
