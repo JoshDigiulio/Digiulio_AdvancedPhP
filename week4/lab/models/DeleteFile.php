@@ -6,13 +6,12 @@ class DeleteFile
     {
           if (unlink('./uploads/' . $file)) 
           {
+                
                 throw new RuntimeException('Not Deleted' . $file);
           } 
           else 
           {
-          
+                throw new RuntimeException('Deleted' . $file);
           }
-    }
-    
-    
+    }   
 }

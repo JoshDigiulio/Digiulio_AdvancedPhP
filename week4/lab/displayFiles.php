@@ -26,12 +26,8 @@
                 </thead>
                     <?php foreach ($directory as $file) : ?>
                         <?php if (!is_dir($file)) : ?>
-                            <?php 
-                                $finfo = new finfo(FILEINFO_MIME_TYPE);
-                                $size = filesize('./uploads/' . $file);                            
-                            ?>
+                            
                             <tr>
-                                <!-- Populate files names -->
                                 <td>
                                     <?php echo $file; ?>
                                 </td>
