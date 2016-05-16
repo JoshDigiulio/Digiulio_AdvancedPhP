@@ -1,10 +1,11 @@
 <?php
-
+//Page Done []
 include_once './bootstrap.php';
 
 /*
  * The Rest server is sort of like the page is hosting the API
- * When a user calls the page (By url(HTTP), CURL, JavaScript etc.), the server(this Page) will handle the request.
+ * When a user calls the page (By url(HTTP), CURL, JavaScript etc.), 
+ * the server(this Page) will handle the request.
  */
 $restServer = new RestServer();
 

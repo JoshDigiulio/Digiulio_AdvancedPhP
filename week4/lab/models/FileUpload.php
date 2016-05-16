@@ -83,8 +83,10 @@ class FileUpload
             {
                 throw new RuntimeException('Failed to move uploaded file.');
             }
+            
     }
 
+    
     public function submitFile($keyName) 
     {
         $this->testFile($keyName);
