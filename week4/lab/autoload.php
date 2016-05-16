@@ -1,6 +1,6 @@
 <?php
 
-
+//Autoload:
 function load_lib($class) 
 {
     include 'models/'.$class . '.php';

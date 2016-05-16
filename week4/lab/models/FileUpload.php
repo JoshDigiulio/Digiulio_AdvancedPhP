@@ -5,11 +5,13 @@ class FileUpload
 {
     private function testFile($keyName) 
     {
+        // Undefined | Multiple Files | $_FILES Corruption Attack
+        // If this request falls under any of them, treat it invalid.
         if (!isset($_FILES[$keyName]['error']) || is_array($_FILES[$keyName]['error'])) 
         {
             throw new RuntimeException('Oops! something went wrong!.');
         }
-        
+        // Check $_FILES['upfile']['error'] value.
         switch ($_FILES[$keyName]['error']) 
         {
             case UPLOAD_ERR_OK:
@@ -23,7 +25,7 @@ class FileUpload
                 throw new RuntimeException('Oops! something went wrong.');
         }
     }
-
+    // You should also check filesize here.
     private function validSize($keyName) 
     {
         if ($_FILES[$keyName]['size'] > 1000000) 
@@ -34,6 +36,8 @@ class FileUpload
     
     private function validExten($keyName)
     {
+        // DO NOT TRUST $_FILES['upfile']['mime'] VALUE !!
+                // Check MIME Type by yourself.
             //Make sure file has one of these extensions:
             $finfo = new finfo(FILEINFO_MIME_TYPE);
             $validExts = array(
@@ -64,7 +68,9 @@ class FileUpload
     
     public function isFileUploaded($ext, $upfile) 
     {
-        $fileName = sha1_file($_FILES[$upfile]['tmp_name']);
+        $salt = uniqid(mt_rand(), true);
+        $fileName = 'img_' . sha1($salt . sha1_file($_FILES[$upfile]['tmp_name']));
+        
         $location = sprintf('./uploads/%s.%s', $fileName, $ext);
         $this->moveFile($location, $upfile);
     }
